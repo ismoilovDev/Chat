@@ -186,7 +186,7 @@ const ForwardModal = ({
   };
 
   const totalC = (contacts || []).length;
-
+  
   /*
   select contacts
   */

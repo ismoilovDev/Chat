@@ -19,7 +19,8 @@ import { useRedux } from "../../hooks/index";
 import { changeTab } from "../../redux/actions";
 
 // costants
-import { LAYOUT_MODES, TABS } from "../../constants/index";
+import { TABS } from "../../constants/index";
+import LightDarkMode from "../../components/LightDarkMode";
 
 //images
 import avatar1 from "../../assets/images/users/avatar-1.jpg";
@@ -98,6 +99,7 @@ const MenuNavItem = ({ item, selectedTab, onChangeTab }: MenuNavItemProps) => {
     <>
       <NavItem className={item.className} id={`${item.key}-container`}>
         <NavLink
+          href="#"
           active={selectedTab === item.tabId}
           id={item.key}
           role="tab"
@@ -110,30 +112,6 @@ const MenuNavItem = ({ item, selectedTab, onChangeTab }: MenuNavItemProps) => {
         {item.tooltipTitle}
       </UncontrolledTooltip>
     </>
-  );
-};
-
-interface ThemeModeChangerProps {
-  themeMode: LAYOUT_MODES.DARK | LAYOUT_MODES.LIGHT;
-  onChangeMode: () => void;
-}
-const ThemeModeChanger = ({
-  themeMode,
-  onChangeMode,
-}: ThemeModeChangerProps) => {
-  const onClick = () => {
-    onChangeMode();
-  };
-  return (
-    <NavItem className="mt-auto" id="color-mode">
-      <NavLink className="nav-link light-dark" onClick={onClick}>
-        <i className="bx bx-moon"></i>
-      </NavLink>
-      <UncontrolledTooltip placement="right" target="color-mode">
-        <span className="light-mode">Light</span>
-        <span className="dark-mode">Dark</span> Mode
-      </UncontrolledTooltip>
-    </NavItem>
   );
 };
 
@@ -185,6 +163,7 @@ const ProfileDropdownMenu = ({ onChangeTab }: ProfileDropdownMenuProps) => {
         <DropdownItem />
         <DropdownItem
           className="d-flex align-items-center justify-content-between"
+          tag="a"
           href="/logout"
         >
           Log out <i className="bx bx-log-out-circle text-muted ms-1"></i>
@@ -193,17 +172,15 @@ const ProfileDropdownMenu = ({ onChangeTab }: ProfileDropdownMenuProps) => {
     </Dropdown>
   );
 };
-interface SideMenuProps {
-  themeMode: LAYOUT_MODES.DARK | LAYOUT_MODES.LIGHT;
-  onChangeMode: () => void;
-}
-const SideMenu = ({ themeMode, onChangeMode }: SideMenuProps) => {
+
+const SideMenu = ({ onChangeLayoutMode }: any) => {
   // global store
   const { dispatch, useAppSelector } = useRedux();
 
   const menuItems: MenuItemType[] = MENU_ITEMS;
-  const { activeTab } = useAppSelector(state => ({
+  const { activeTab, layoutMode } = useAppSelector(state => ({
     activeTab: state.Layout.activeTab,
+    layoutMode: state.Layout.layoutMode,
   }));
 
   /* 
@@ -253,7 +230,10 @@ const SideMenu = ({ themeMode, onChangeMode }: SideMenuProps) => {
           ))}
 
           {/* change mode */}
-          <ThemeModeChanger themeMode={themeMode} onChangeMode={onChangeMode} />
+          <LightDarkMode
+            layoutMode={layoutMode}
+            onChangeLayoutMode={onChangeLayoutMode}
+          />
 
           {/* profile menu dropdown */}
           <ProfileDropdownMenu onChangeTab={onChangeTab} />

@@ -216,7 +216,7 @@ const ContactModal = ({ isOpen, onClose, onAddContact }: ContactModalProps) => {
         )}
       </ModalBody>
       <ModalFooter>
-        <Button type="button" color="link">
+        <Button type="button" color="link" onClick={onClose}>
           Cancel
         </Button>
         <Button

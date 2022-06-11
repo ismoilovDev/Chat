@@ -31,9 +31,12 @@ const ProfileUser = ({
   const profile = chatUserDetails.profileImage
     ? chatUserDetails.profileImage
     : imagePlaceholder;
-  const fullName = chatUserDetails.firstName
-    ? `${chatUserDetails.firstName} ${chatUserDetails.lastName}`
-    : "-";
+  const fullName =
+    chatUserDetails.name === undefined
+      ? chatUserDetails.firstName
+        ? `${chatUserDetails.firstName} ${chatUserDetails.lastName}`
+        : "-"
+      : chatUserDetails.name;
 
   return (
     <div className="p-3 border-bottom">
@@ -115,30 +118,32 @@ const ProfileUser = ({
           </div>
           <div className="mt-auto p-3">
             <h5 className="user-name mb-1 text-truncate">{fullName}</h5>
-            <p className="font-size-14 text-truncate mb-0">
-              <i
-                className={classnames(
-                  "bx",
-                  "bxs-circle",
-                  "font-size-10",
-                  "me-1",
-                  "ms-0",
-                  {
-                    "text-success":
-                      chatUserDetails.status === STATUS_TYPES.ACTIVE,
-                  },
-                  {
-                    "text-warning":
-                      chatUserDetails.status === STATUS_TYPES.AWAY,
-                  },
-                  {
-                    "text-danger":
-                      chatUserDetails.status === STATUS_TYPES.DO_NOT_DISTURB,
-                  }
-                )}
-              ></i>{" "}
-              {chatUserDetails.status}
-            </p>
+            {chatUserDetails.status && (
+              <p className="font-size-14 text-truncate mb-0">
+                <i
+                  className={classnames(
+                    "bx",
+                    "bxs-circle",
+                    "font-size-10",
+                    "me-1",
+                    "ms-0",
+                    {
+                      "text-success":
+                        chatUserDetails.status === STATUS_TYPES.ACTIVE,
+                    },
+                    {
+                      "text-warning":
+                        chatUserDetails.status === STATUS_TYPES.AWAY,
+                    },
+                    {
+                      "text-danger":
+                        chatUserDetails.status === STATUS_TYPES.DO_NOT_DISTURB,
+                    }
+                  )}
+                ></i>{" "}
+                {chatUserDetails.status}
+              </p>
+            )}
           </div>
         </div>
       </div>

@@ -57,7 +57,6 @@ function* getDirectMessages() {
       chatsApiResponseSuccess(ChatsActionTypes.GET_DIRECT_MESSAGES, response)
     );
   } catch (error: any) {
-    console.log(error);
     yield put(
       chatsApiResponseError(ChatsActionTypes.GET_DIRECT_MESSAGES, error)
     );

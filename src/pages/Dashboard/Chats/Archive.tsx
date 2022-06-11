@@ -17,7 +17,7 @@ const Archive = ({
   return (
     <>
       <h5 className="mb-3 px-4 mt-4 font-size-11 text-muted text-uppercase">
-        Favourites
+      Archived
       </h5>
 
       <div className="chat-message-list">

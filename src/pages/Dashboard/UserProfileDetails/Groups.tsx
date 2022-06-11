@@ -71,7 +71,7 @@ const Groups = ({ chatUserDetails }: GroupsProps) => {
           ))}
         </ul>
       ) : (
-        <p>No Groups</p>
+        <p>No Groups</p> 
       )}
     </div>
   );

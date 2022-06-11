@@ -265,7 +265,7 @@ const AddGroupModal = ({
         </Form>
       </ModalBody>
       <ModalFooter>
-        <Button color="link" type="button">
+        <Button color="link" type="button" onClick={onClose}>
           Close
         </Button>
         <Button

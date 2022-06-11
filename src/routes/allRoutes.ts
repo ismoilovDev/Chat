@@ -21,7 +21,6 @@ interface RouteProps {
 }
 
 const publicRoutes: Array<RouteProps> = [
-  { path: "/logout", component: Logout },
   { path: "/auth-login", component: Login },
   { path: "/auth-register", component: Register },
   { path: "/auth-recoverpw", component: RecoverPassword },

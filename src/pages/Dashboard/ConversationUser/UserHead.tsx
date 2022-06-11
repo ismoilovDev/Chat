@@ -119,7 +119,7 @@ const ProfileImage = ({
                 ></span>
               </>
             ) : (
-              <div className="flex-shrink-0 avatar-sm align-self-center ms-0">
+              <div className="avatar-sm align-self-center">
                 <span
                   className={classnames(
                     "avatar-title",
